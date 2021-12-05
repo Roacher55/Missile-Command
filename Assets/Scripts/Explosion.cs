@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    
     void Start()
     {
         
@@ -20,6 +19,7 @@ public class Explosion : MonoBehaviour
     {
         if(collision.tag == "Target" || collision.tag == "Missle")
         {
+            GetComponent<AudioSource>().Play();
             Destroy(collision.gameObject,0.1f);
         }
     }

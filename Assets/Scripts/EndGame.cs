@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,10 +8,14 @@ public class EndGame : MonoBehaviour
 {
     // Start is called before the first frame update
     public List<GameObject> targets = new List<GameObject>();
-    
+    DestroyMissleNewLevel destroyMissleNewLevel;
+    [SerializeField] public SaveScores saveScores;
+
     void Start()
     {
-        foreach(var x in GameObject.FindGameObjectsWithTag("Target"))
+        
+        destroyMissleNewLevel = FindObjectOfType<DestroyMissleNewLevel>();
+        foreach (var x in GameObject.FindGameObjectsWithTag("Target"))
         {
             targets.Add(x);
         }
@@ -27,7 +32,29 @@ public class EndGame : MonoBehaviour
         if(targets.Count ==0)
         {
             Missle.speed = 1f;
-            SceneManager.LoadScene("Main");
+            SaveScore();
+            SceneManager.LoadScene("Menu");
         }
+    }
+
+    void SaveScore()
+    {
+        Debug.Log("Points:" + destroyMissleNewLevel.points);
+        var tempScore = destroyMissleNewLevel.points;
+        saveScores.lastGamesScore = destroyMissleNewLevel.points;
+        for (int i = 0; i < saveScores.scores.Length; i++)
+        {
+            if (tempScore > saveScores.scores[i])
+            {
+                int temp = saveScores.scores[i];
+                saveScores.scores[i] = tempScore;
+                tempScore = temp;
+            }
+        }
+        EditorUtility.SetDirty(saveScores);
+
+        Debug.Log("abc" + saveScores.lastGamesScore);
+        Debug.Log("abcdcf" + destroyMissleNewLevel.points);
+
     }
 }

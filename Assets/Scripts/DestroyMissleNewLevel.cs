@@ -14,10 +14,11 @@ public class DestroyMissleNewLevel : MonoBehaviour
     [SerializeField]int startMissle = 5;
     [SerializeField] int additionalMissle = 5;
     [SerializeField] float additionalSpeed = 0.1f;
+    [SerializeField] AudioSource nextLevelSound;
 
     SpawnEnemyMissle spawnEnemyMissle;
     float timerNextLevel = 0f;
-    int points = 0;
+    public int points = 0;
     public int missleToDestroy;
     int level = 1;
     EndGame endGame;
@@ -54,6 +55,7 @@ public class DestroyMissleNewLevel : MonoBehaviour
             spawnEnemyMissle.howMuchMissle = missleToDestroy;
 
             TimerAndColourText();
+            nextLevelSound.Play();
         }
 
 
