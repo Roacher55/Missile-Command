@@ -6,13 +6,7 @@ public class Explosion : MonoBehaviour
 {
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-          Destroy(gameObject, 1f);
+        Destroy(gameObject, 1f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,7 +14,7 @@ public class Explosion : MonoBehaviour
         if(collision.tag == "Target" || collision.tag == "Missle")
         {
             GetComponent<AudioSource>().Play();
-            Destroy(collision.gameObject,0.1f);
+            Destroy(collision.gameObject,0.2f);
         }
     }
 }

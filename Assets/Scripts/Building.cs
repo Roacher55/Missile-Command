@@ -11,15 +11,10 @@ public class Building : MonoBehaviour
         endGame = FindObjectOfType<EndGame>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnDestroy()
     {
-        endGame.targets.Remove(gameObject);
+        endGame.targets.Remove(this);
+        endGame.onBuildingDestroy.Invoke();
     }
 
 

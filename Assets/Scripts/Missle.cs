@@ -8,13 +8,14 @@ public class Missle : MonoBehaviour
     public static float speed = 1f;
     [SerializeField] GameObject explosion;
     // Start is called before the first frame update
-    
 
-    protected private void Move()
+  
+    protected virtual void Move()
     {
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         if (target == transform.position)
         {
+            MakeExplosion();
             Destroy(gameObject);
         }
         
@@ -30,7 +31,7 @@ public class Missle : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle - 90f));
     }
 
-    protected void OnDestroy()
+    protected void MakeExplosion()      
     {
         Instantiate(explosion, transform.position, transform.rotation);
     }

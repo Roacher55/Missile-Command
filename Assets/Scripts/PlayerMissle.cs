@@ -10,14 +10,13 @@ public class PlayerMissle : Missle
     void Start()
     {
         TargetPointVisual();
+        Rotate();
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
-        Rotate();
-        Debug.Log(target);
     }
 
     void TargetPointVisual()
@@ -26,7 +25,7 @@ public class PlayerMissle : Missle
         
     }
 
-    private new void Move()
+    protected override void Move()
     {
         base.Move();
         if (target == transform.position)

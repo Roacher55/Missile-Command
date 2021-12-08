@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {x: 0, y: 0, z: 0}
-  speed: 1
   explosion: {fileID: 5485270384342847494, guid: 3b5911b2c1b91d541a5b513aa15a84a2, type: 3}
+  Smug: {fileID: 996611294670349540}
 --- !u!50 &-4760487590371672096
 Rigidbody2D:
   serializedVersion: 4
@@ -155,7 +155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5816265367149814796
 Transform:
   m_ObjectHideFlags: 0
@@ -164,7 +164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996611294670349540}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -10.95, z: 0}
+  m_LocalPosition: {x: 0, y: -10.95, z: 1}
   m_LocalScale: {x: 2, y: 0.4, z: 2}
   m_Children: []
   m_Father: {fileID: 4010834593637736755}

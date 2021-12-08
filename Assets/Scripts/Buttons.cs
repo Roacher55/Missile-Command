@@ -5,8 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
-    // Start is called before the first frame update
-   public void ClickStartButton()
+    [SerializeField] Texture2D cursor;
+    private void Start()
+    {
+        Cursor.SetCursor(cursor, Vector3.zero, CursorMode.ForceSoftware);
+    }
+    public void ClickStartButton()
     {
         SceneManager.LoadScene("Main");
     }
@@ -19,5 +23,9 @@ public class Buttons : MonoBehaviour
     public void ClickMenu()
     {
         SceneManager.LoadScene("Menu");
+    }
+    public void ClickExitGame()
+    {
+        Application.Quit();
     }
 }

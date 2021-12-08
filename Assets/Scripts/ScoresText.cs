@@ -9,6 +9,31 @@ public class ScoresText : MonoBehaviour
     [SerializeField] Text lastGameScore;
     [SerializeField]SaveScores saveScores;
 
+    private void Awake()
+    {
+        if (PlayerPrefs.HasKey("LastScore"))
+        {
+            saveScores.lastGamesScore = PlayerPrefs.GetInt("LastScore");
+        }
+        else
+        {
+            saveScores.lastGamesScore = 0;  
+        }
+        for (int i = 0; i < saveScores.scores.Length; i++)
+        {
+            string label = "Score" + i;
+            if (PlayerPrefs.HasKey(label))
+            {
+                saveScores.scores[i] = PlayerPrefs.GetInt(label);
+            }
+            else
+            {
+                saveScores.scores[i] = 0;
+            }
+        }
+
+    }
+
     private void Start()
     {
 

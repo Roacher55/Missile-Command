@@ -1,31 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour
 {
     // Start is called before the first frame update
-    public List<GameObject> targets = new List<GameObject>();
+    public List<Building> targets;
     DestroyMissleNewLevel destroyMissleNewLevel;
     [SerializeField] public SaveScores saveScores;
+    public UnityEvent onBuildingDestroy;
 
+    private void OnEnable()
+    {
+        onBuildingDestroy.AddListener(LoseAllBuildings);
+    }
+
+    private void OnDisable()
+    {
+        onBuildingDestroy.RemoveListener(LoseAllBuildings);
+    }
     void Start()
     {
-        
+        targets = new List<Building>(FindObjectsOfType<Building>());
         destroyMissleNewLevel = FindObjectOfType<DestroyMissleNewLevel>();
-        foreach (var x in GameObject.FindGameObjectsWithTag("Target"))
-        {
-            targets.Add(x);
-        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        LoseAllBuildings();
-    }
+    
 
     void LoseAllBuildings()
     {
@@ -39,9 +41,11 @@ public class EndGame : MonoBehaviour
 
     void SaveScore()
     {
-        Debug.Log("Points:" + destroyMissleNewLevel.points);
+
         var tempScore = destroyMissleNewLevel.points;
         saveScores.lastGamesScore = destroyMissleNewLevel.points;
+        PlayerPrefs.SetInt("LastScore", saveScores.lastGamesScore);
+
         for (int i = 0; i < saveScores.scores.Length; i++)
         {
             if (tempScore > saveScores.scores[i])
@@ -49,12 +53,15 @@ public class EndGame : MonoBehaviour
                 int temp = saveScores.scores[i];
                 saveScores.scores[i] = tempScore;
                 tempScore = temp;
+                string label = "Score" + i;
+                PlayerPrefs.SetInt(label, saveScores.scores[i]);
             }
         }
-        EditorUtility.SetDirty(saveScores);
+        PlayerPrefs.Save();
 
-        Debug.Log("abc" + saveScores.lastGamesScore);
-        Debug.Log("abcdcf" + destroyMissleNewLevel.points);
 
     }
+
+    
+
 }

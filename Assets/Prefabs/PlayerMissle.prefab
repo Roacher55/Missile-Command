@@ -136,7 +136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {x: 0, y: 0, z: 0}
-  speed: 1
   explosion: {fileID: 5485270384342847494, guid: 3b5911b2c1b91d541a5b513aa15a84a2, type: 3}
   point: {fileID: 6084617394673187116, guid: b2959a853edcf014eb03760f3c7f9859, type: 3}
 --- !u!1 &996611294670349540
@@ -165,7 +164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996611294670349540}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -10.95, z: 0}
+  m_LocalPosition: {x: 0, y: -10.95, z: 1}
   m_LocalScale: {x: 2, y: 0.4, z: 2}
   m_Children: []
   m_Father: {fileID: 4010834593637736755}

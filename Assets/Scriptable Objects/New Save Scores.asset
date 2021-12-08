@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e8cbd291872e440b2f7f0839487379, type: 3}
   m_Name: New Save Scores
   m_EditorClassIdentifier: 
-  scores: 10270000c0120000f4010000
-  lastGamesScore: 4800
+  scores: 28230000401f0000ac0d0000
+  lastGamesScore: 8000

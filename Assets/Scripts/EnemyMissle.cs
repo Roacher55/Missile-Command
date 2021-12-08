@@ -8,6 +8,8 @@ public class EnemyMissle : Missle
     List<GameObject> targets =  new List<GameObject>();
     DestroyMissleNewLevel destroyMissleNewLevel;
     int index;
+    TextInGame textInGame;
+    [SerializeField] GameObject Smug;
     void Start()
     {
         foreach(var a in GameObject.FindGameObjectsWithTag("Target"))
@@ -17,6 +19,10 @@ public class EnemyMissle : Missle
         index = Random.Range(0, targets.Count);
         target = targets[index].transform.position;
         destroyMissleNewLevel = FindObjectOfType<DestroyMissleNewLevel>();
+
+        textInGame = FindObjectOfType<TextInGame>();
+        Rotate();
+        Smug.SetActive(true);
     }
 
     // Update is called once per frame
@@ -24,23 +30,25 @@ public class EnemyMissle : Missle
     private void Update()
     {
         Move();
-        Rotate();
     }
-
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag =="Target")
         {
-            Destroy(gameObject);
+            MakeExplosion(); 
             Destroy(collision.gameObject);
+            Destroy(gameObject);
         }
     }
 
-    private new void OnDestroy()
+    private void OnDestroy()
     {
-        base.OnDestroy();
         destroyMissleNewLevel.missleToDestroy--;
+        textInGame.onStatisticChange.Invoke();
+        if(destroyMissleNewLevel.missleToDestroy <= 0)
+        { 
+            textInGame.nextLevelEvent.Invoke();
+        }
     }
 }
